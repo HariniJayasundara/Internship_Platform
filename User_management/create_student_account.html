@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Account</title>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var student_number = document.forms["createAccountForm"]["student_number"].value;
+            var name_with_initials = document.forms["createAccountForm"]["name_with_initials"].value;
+            var preferred_name = document.forms["createAccountForm"]["preferred_name"].value;
+            var specialization = document.forms["createAccountForm"]["specialization"].value;
+            var current_gpa = document.forms["createAccountForm"]["current_gpa"].value;
+
+            // Validation logic for mandatory fields
+            if (student_number === "" || name_with_initials === "" || preferred_name === "" || specialization === "" || current_gpa === "") {
+                alert("All mandatory fields must be filled out.");
+                return false;
+            }
+
+            // Validation logic for student number format
+            var studentNumberPattern = /^IM\/20\d{2}\/\d{3}$/;
+            if (!studentNumberPattern.test(student_number)) {
+                alert("Please enter a valid student number in the format IM/20xx/xxx.");
+                return false;
+            }
+
+            // Validation logic for specialization selection
+            var validSpecializations = ["IT", "IS", "BSE", "OSCM"];
+            if (!validSpecializations.includes(specialization)) {
+                alert("Please select a valid specialization.");
+                return false;
+            }
+
+            // Validation logic for GPA format
+            var gpaPattern = /^\d+(\.\d{1,4})?$/;
+            if (!gpaPattern.test(current_gpa)) {
+                alert("Please enter a valid GPA (numeric up to 4 decimal points).");
+                return false;
+            }
+
+            // If all validations pass, submit the form
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Create Account</h2>
+        <form name="createAccountForm" method="POST" action="create_account.php" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="student_number">Student Number:</label>
+                <input type="text" id="student_number" name="student_number" required>
+            </div>
+            <div class="form-group">
+                <label for="name_with_initials">Name with Initials:</label>
+                <input type="text" id="name_with_initials" name="name_with_initials" required>
+            </div>
+            <div class="form-group">
+                <label for="preferred_name">Preferred Name:</label>
+                <input type="text" id="preferred_name" name="preferred_name" required>
+            </div>
+            <div class="form-group">
+                <label for="specialization">Specialization:</label>
+                <select id="specialization" name="specialization" required>
+                    <option value="">Select Specialization</option>
+                    <option value="IT">IT</option>
+                    <option value="IS">IS</option>
+                    <option value="BSE">BSE</option>
+                    <option value="OSCM">OSCM</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="current_gpa">Current GPA:</label>
+                <input type="number" id="current_gpa" name="current_gpa" step="0.0001" min="0" max="4" required>
+            </div>
+            <div class="form-group">
+                <label for="qualifications">Educational Qualifications:</label>
+                <textarea id="qualifications" name="qualifications"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="achievements">Special Achievements:</label>
+                <textarea id="achievements" name="achievements"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="extra_curricular_activities">Extra-curricular Activities:</label>
+                <textarea id="extra_curricular_activities" name="extra_curricular_activities"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="linkedin_account">LinkedIn Account:</label>
+                <input type="text" id="linkedin_account" name="linkedin_account">
+            </div>
+            <div class="form-group">
+                <button type="submit" value="Create Account">Create Account</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
