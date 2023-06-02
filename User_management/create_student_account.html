@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create Account</title>
+    <title>Create Student Account</title>
     <style>
         body {
   font-family: Arial, sans-serif;
@@ -67,11 +67,11 @@ button[type="submit"]:hover {
     </style>
     <script>
         function validateForm() {
-            var student_number = document.forms["createAccountForm"]["student_number"].value;
-            var name_with_initials = document.forms["createAccountForm"]["name_with_initials"].value;
-            var preferred_name = document.forms["createAccountForm"]["preferred_name"].value;
-            var specialization = document.forms["createAccountForm"]["specialization"].value;
-            var current_gpa = document.forms["createAccountForm"]["current_gpa"].value;
+            var student_number = document.forms["createStuAccountForm"]["student_number"].value;
+            var name_with_initials = document.forms["createStuAccountForm"]["name_with_initials"].value;
+            var preferred_name = document.forms["createStuAccountForm"]["preferred_name"].value;
+            var specialization = document.forms["createStuAccountForm"]["specialization"].value;
+            var current_gpa = document.forms["createStuAccountForm"]["current_gpa"].value;
 
             // Validation logic for mandatory fields
             if (student_number === "" || name_with_initials === "" || preferred_name === "" || specialization === "" || current_gpa === "") {
@@ -109,7 +109,7 @@ button[type="submit"]:hover {
 <body>
     <div class="container">
         <h2>Create Account</h2>
-        <form name="createAccountForm" method="POST" action="create_account.php" onsubmit="return validateForm()">
+        <form name="createStuAccountForm" method="POST" action="create_stu_account.php" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="student_number">Student Number:</label>
                 <input type="text" id="student_number" name="student_number" required>
